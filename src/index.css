@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  body {
+    font-size: 14px;
+    @apply w-screen p-0 m-0;
+  }
+
+  #root {
+    @apply max-w-7xl h-screen mx-auto overflow-x-hidden;
+  }
+
+  input:focus {
+    @apply outline-none
+  }
+}
