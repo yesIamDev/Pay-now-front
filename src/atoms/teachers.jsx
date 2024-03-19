@@ -1,5 +1,5 @@
 import { atom, selector } from "recoil";
-import { getAllTeachers } from "../services/teacher.service";
+// import { getAllTeachers } from "../services/teacher.service";
 
 export const teacherState = atom({
   key: "teacherState",
