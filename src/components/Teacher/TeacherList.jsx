@@ -4,8 +4,8 @@ import { useRecoilValueLoadable, useRecoilState } from "recoil";
 import { teacherState, fetchTeachers } from "../../atoms/teachers";
 
 
-import { Table,Modal } from "antd";
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
+import { Table, Modal } from "antd";
+import { EditOutlined, DeleteOutlined, MoreOutlined } from '@ant-design/icons'
 
 import AddTeacher from "../../modals/AddTeacher";
 
@@ -25,19 +25,19 @@ export default function TeacherList() {
 
   const teachersList = teachersLoadable.contents;
 
-  const handleClick =  (teacherId) => {
+  const handleClick = (teacherId) => {
     setTeachers((s) => ({ ...s, currentTeacher: teacherId }));
   };
 
-  const handleDelet =  () => {
-      Modal.confirm({
-        title: 'Are you sure, you want to delete this teacher ?',
-        okText: 'Yes',
-        okType: 'danger',
-        onOk: () => {
-            console.log("Succes")
-        }
-      })
+  const handleDelet = (name) => {
+    Modal.confirm({
+      title: 'Are you sure, you want to delete this teacher ?',
+      okText: 'Yes',
+      okType: 'danger',
+      onOk: () => {
+        console.log(`${name} deleted successfully`)
+      }
+    })
   }
 
   const Columns = [
@@ -49,7 +49,7 @@ export default function TeacherList() {
         return <a className="font-bold">{name}</a>;
       },
     },
-    
+
     {
       title: "lastName",
       dataIndex: "lastname",
@@ -80,13 +80,16 @@ export default function TeacherList() {
         return <>
           <EditOutlined />
           <DeleteOutlined onClick={() => {
-              handleDelet()
-          }}  style={{color: 'red', marginLeft:'12px'}} />
+            handleDelet(record.name)
+          }} style={{ color: 'red', marginLeft: '12px' }} />
+          <MoreOutlined style={{ marginLeft: '12px', color: 'blue' }} onClick={() => {
+                // show teachers details
+          }} />
         </>
       },
     },
   ];
-  
+
 
   return (
     <div className="container">
