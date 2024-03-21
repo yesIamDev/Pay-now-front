@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@ant-design/icons':
+    specifier: ^5.3.4
+    version: 5.3.4(react-dom@18.2.0)(react@18.2.0)
   antd:
     specifier: ^5.14.2
     version: 5.14.2(react-dom@18.2.0)(react@18.2.0)
@@ -112,8 +115,8 @@ packages:
     resolution: {integrity: sha512-vHbT+zJEVzllwP+CM+ul7reTEfBR0vgxFe7+lREAsAA7YGsYpboiq2sQNeQeRvh09GfQgs/GyFEvZpJ9cLXpXA==}
     dev: false
 
-  /@ant-design/icons@5.3.0(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-69FgBsIkeCjw72ZU3fJpqjhmLCPrzKGEllbrAZK7MUdt1BrKsyG6A8YDCBPKea27UQ0tRXi33PcjR4tp/tEXMg==}
+  /@ant-design/icons@5.3.4(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-U5eTSeSFr2V9SeJzYOo5mybAZfsoNuiIA8bvFoZUe+h9LBLs8UwrVaVwcMQC4AhBuojXkLMlmtnIlvUczXXHaQ==}
     engines: {node: '>=8'}
     peerDependencies:
       react: '>=16.0.0'
@@ -1013,7 +1016,7 @@ packages:
     dependencies:
       '@ant-design/colors': 7.0.2
       '@ant-design/cssinjs': 1.18.4(react-dom@18.2.0)(react@18.2.0)
-      '@ant-design/icons': 5.3.0(react-dom@18.2.0)(react@18.2.0)
+      '@ant-design/icons': 5.3.4(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/react-slick': 1.0.2(react@18.2.0)
       '@ctrl/tinycolor': 3.6.1
       '@rc-component/color-picker': 1.5.2(react-dom@18.2.0)(react@18.2.0)
