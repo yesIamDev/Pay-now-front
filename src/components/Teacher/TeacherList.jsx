@@ -1,8 +1,7 @@
 import React from "react";
-import { deleteTeacher } from "../../services/teacher.service";
 
-import { useRecoilValueLoadable, useRecoilState } from "recoil";
-import { teacherState, fetchTeachers } from "../../atoms/teachers";
+import { useRecoilValueLoadable, useSetRecoilState} from "recoil";
+import {currentTeacher, fetchTeachers, teacherState } from "../../atoms/teachers";
 
 
 import { Table, Modal } from "antd";
@@ -10,10 +9,11 @@ import { EditOutlined, DeleteOutlined, MoreOutlined } from '@ant-design/icons'
 
 import AddTeacher from "../../modals/AddTeacher";
 
+
 export default function TeacherList() {
   const teachersLoadable = useRecoilValueLoadable(fetchTeachers);
-  const [teachers, setTeachers] = useRecoilState(teacherState);
-
+  const setTeacherState = useSetRecoilState(teacherState)
+  
   if (teachersLoadable.state === "loading") {
     return <div>Chargement en cours...</div>;
   }
@@ -26,21 +26,21 @@ export default function TeacherList() {
 
   const teachersList = teachersLoadable.contents;
 
-  const handleDelet = async (id) => {
+  const handleDeleteTeacher = (TeacherId) => {
     Modal.confirm({
       title: 'Are you sure, you want to delete this teacher ?',
       okText: 'Yes',
       okType: 'danger',
       onOk: () => {
-        try {
-          deleteTeacher(id);
-        } catch (error) {
-          throw new Error(error);
-        }
+         console.log(TeacherId)
       }
     })
   }
 
+
+const handleShowDetails = (teacher) => {
+  setTeacherState(s => ({...s, currentTeacher:teacher}))
+}
 
   const Columns = [
     {
@@ -82,11 +82,9 @@ export default function TeacherList() {
         return <>
           <EditOutlined />
           <DeleteOutlined onClick={() => {
-            handleDelet(record.id)
+            handleDeleteTeacher(record.id)
           }} style={{ color: 'red', marginLeft: '12px' }} />
-          <MoreOutlined style={{ marginLeft: '12px', color: 'blue' }} onClick={() => {
-            // show teacher details
-          }} />
+          <MoreOutlined style={{ marginLeft: '12px', color: 'blue' }} onClick={() => handleShowDetails(record.id)}/>
         </>
       },
     },

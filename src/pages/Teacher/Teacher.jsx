@@ -20,15 +20,10 @@ export default function Teacher() {
           <div className="m-5 p-5">
             <h1 className="text-blue-600 font-bold">Teacher's Details</h1>
             <div>
-              <TeacherDetails
-                teacher={{
-                  name: "David",
-                  lastname: "keukeu",
-                  age: 12,
-                  sex: "Masculin",
-                  salary: 500,
-                }}
-              />
+              <Suspense fallback="chargement...">
+                <TeacherDetails />
+              </Suspense>
+
             </div>
           </div>
         </div>
