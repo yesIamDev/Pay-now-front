@@ -1,8 +1,7 @@
 import axios from "axios";
 import { teacherUrl } from "./constante";
 
-import { teacherState } from "../atoms/teachers";
-import { useRecoilState } from "recoil";
+//create a new teacher
 
 const createTeacher = async (payload) => {
     try {
@@ -12,6 +11,8 @@ const createTeacher = async (payload) => {
       throw new Error("ENABLE_TO_FETCH_DATA");
     }
 };
+
+// show all teachers registred
 
 const getAllTeachers = async () => {
   try {
@@ -23,6 +24,8 @@ const getAllTeachers = async () => {
   }
 };
 
+// update teacher's informations
+
 const updateTeacher = async (teacherId) => {
   try {
     const res = await axios.update(teacherUrl.updateOne, teacherId);
@@ -31,6 +34,8 @@ const updateTeacher = async (teacherId) => {
     throw new Error("FAIL_TO_UPDATE_TEACHER");
   }
 };
+
+// delete a teacher
 
 const deleteTeacher = async (teacherId) => {
   try {

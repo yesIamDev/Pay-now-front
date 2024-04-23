@@ -1,4 +1,5 @@
 import React from "react";
+import { deleteTeacher } from "../../services/teacher.service";
 
 import { useRecoilValueLoadable, useRecoilState } from "recoil";
 import { teacherState, fetchTeachers } from "../../atoms/teachers";
@@ -25,20 +26,21 @@ export default function TeacherList() {
 
   const teachersList = teachersLoadable.contents;
 
-  const handleClick = (teacherId) => {
-    setTeachers((s) => ({ ...s, currentTeacher: teacherId }));
-  };
-
-  const handleDelet = (name) => {
+  const handleDelet = async (id) => {
     Modal.confirm({
       title: 'Are you sure, you want to delete this teacher ?',
       okText: 'Yes',
       okType: 'danger',
       onOk: () => {
-        console.log(`${name} deleted successfully`)
+        try {
+          deleteTeacher(id);
+        } catch (error) {
+          throw new Error(error);
+        }
       }
     })
   }
+
 
   const Columns = [
     {
@@ -80,10 +82,10 @@ export default function TeacherList() {
         return <>
           <EditOutlined />
           <DeleteOutlined onClick={() => {
-            handleDelet(record.name)
+            handleDelet(record.id)
           }} style={{ color: 'red', marginLeft: '12px' }} />
           <MoreOutlined style={{ marginLeft: '12px', color: 'blue' }} onClick={() => {
-                // show teachers details
+            // show teacher details
           }} />
         </>
       },
@@ -104,7 +106,7 @@ export default function TeacherList() {
           columns={Columns}
           pagination={{
             size: "small",
-            pageSize: 5,
+            pageSize: 6,
             showSizeChanger: false,
           }}
         ></Table>

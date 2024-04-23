@@ -24,10 +24,7 @@ export const fetchTeachers = selector({
       console.error("Une erreur s'est produite:", error);
       return [];
     }
-  },
-  set: ({ set }, newValue) => {
-    set(teacherState.teachers, newValue);
-  },
+  }
 });
 
 

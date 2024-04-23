@@ -1,6 +1,8 @@
 import axios from "axios";
 import {coursUrl} from "./constante"
 
+// create a new cours
+
 const createCours = async (payload) => {
   try{
       const res = await axios.post(coursUrl.addCours, payload);
@@ -9,6 +11,8 @@ const createCours = async (payload) => {
     throw new Error("ENABLE_TO_FETCH_DATA");
   }
 }
+
+// show all cours
 
 const getAllCours = async () => {
   try{
@@ -19,6 +23,8 @@ const getAllCours = async () => {
   }
 }
 
+// update
+
 const updateCours = async (coursId) => {
   try{
       const res = await axios.update(coursUrl.updateOne(coursId));
@@ -27,6 +33,8 @@ const updateCours = async (coursId) => {
     throw new Error("FAIL_TO_UPDATE_COURS");
   }
 }
+
+//delete
 
 const deleteCours = async (coursId) => {
   try{
